@@ -1,0 +1,51 @@
+Green - aka virtual threads
+Data can be owned by 1 entity at a time.
+Concurency != Paralellism
+Concurency -> More than 1 thing to do at the same time
+Parallel -> Work on concurent activities at the same time
+
+Models:
+ - Mutex (accessed by limited number of threads)
+ - Events (signaling when interessting stuff happens)
+ - Callback (Call function upon completion of a long task)
+ - Promise (Chain async tasks together, easy to understand and debug.)
+
+Concurency Models:
+	Processor Threads
+		- Pro:
+		  * Control
+		  * Performance
+		  * Responsivness
+		- Cons:
+		  * Some cases result in poor performance(mutex, sync)
+		  * Memory Consumption
+		  * Shared Memory
+		  * Race Condition
+	Events (Emitter -> Receiver -> Event Object)
+		- Pro:
+		  * Memory Isolation 
+		  * Separate Callee from Caller
+		- Cons:
+		  * Traceability
+		  * Synchronizing Receivers (May get overloaded)
+	Callbacks/Promises: (Callback -> Promise)
+		- Pro:
+		  * Memory Isolation
+		  * Simplify Async Operations
+		- Cons:
+		  * Pyramid of Doom (Callback of callbacks, nested callback errors are hard to trace)
+		  * Handling Multiple Receivers 
+	Communicating Sequential Processes (Erlang's ability, 100-s concurent, Actors -> Message<Passed between Actors>)
+		- Pro:
+		  * Fully Decoupled (Actors only know where messages come and go to)
+		  * Multiple handlers
+		  * Memory Isolation
+		- Cons:
+		  * Complicated Mental Model
+		  * Traceability
+
+Goroutines -> Class of Threads -> Runtime decides how these are executed on the processor threads. Start out small, with teh ability to scale/grow.
+Processor thread -> 1MB
+Greent thread -> 2KB
+
+GOMAXPROCS -> The number of CPU-s that can be executing simultaneously 
